@@ -1,0 +1,344 @@
+body {
+  font-family: "Ubuntu", sans-serif;
+  background: url("rover.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+@mixin flexbox {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.wrapper {
+  @include flexbox();
+}
+
+.weather {
+  width: 60rem;
+  height: 500px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.title {
+  width: 50rem;
+  margin-left: 50px;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title h2 {
+  font-size: 30px;
+  background-image: linear-gradient(45deg, red, orange);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  font-weight: 300;
+  opacity: 1;
+}
+
+.unit-toggle {
+  height: 20px;
+  width: 50px;
+  border-radius: 12px;
+  background-color: transparent;
+  border: 2px solid white;
+  position: relative;
+  &::before {
+    position: absolute;
+    content: "\00B0 C";
+    font-size: 20px;
+    color: rgba(250, 250, 250, 0.7);
+    left: -30px;
+    top: 0;
+  }
+
+  &::after {
+    position: absolute;
+    content: "\00B0 F";
+    font-size: 20px;
+    color: rgba(250, 250, 250, 0.7);
+    right: -30px;
+    top: 0;
+  }
+}
+
+.unit-toggle-button-left {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: white;
+  top: 0;
+  left: 0;
+}
+
+.unit-toggle-button-right {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: white;
+  top: 0;
+  right: 0;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.date h1 {
+  color: white;
+  font-size: 4rem;
+  margin: 0;
+}
+.date h3 {
+  color: rgba(250, 250, 250, 0.7);
+  font-size: 25px;
+  font-weight: 200;
+  margin-top: 10px;
+}
+
+.temp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.temp h1 {
+  color: white;
+  font-size: 2rem;
+  margin-top: -10px;
+}
+
+.temp h3 {
+  color: rgba(250, 250, 250, 0.7);
+  font-size: 25px;
+  font-weight: 100;
+  margin: 0;
+}
+
+#divider {
+  height: 120px;
+  width: 3px;
+  background-color: #913636;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.wind h1 {
+  margin-top: -10px;
+  margin-bottom: 5px;
+  color: white;
+  font-size: 2rem;
+  position: relative;
+}
+.wind h3 {
+  color: rgba(250, 250, 250, 0.7);
+  font-size: 25px;
+  font-weight: 300;
+  margin-top: 0;
+}
+.wind-icon {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: gray;
+}
+
+.more-info {
+  background-color: black;
+  background-image: linear-gradient(to left, #f3ec78, #e33264);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  font-family: "Courier New", Courier, monospace;
+  margin-top: 30px;
+  margin-left: 20px;
+  margin-right: auto;
+  display: inline-block;
+  white-space: border-box;
+  animation: reveal 5s ease-in-out forwards;
+  overflow: hidden;
+}
+
+@keyframes reveal {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  30% {
+    height: 10px;
+  }
+  50% {
+    height: 30px;
+    width: 50%;
+  }
+  100% {
+    width: 55rem;
+  }
+}
+
+.tri {
+  position: absolute;
+  height: 0;
+  width: 0;
+  top: 50px;
+  left: 40px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  animation: turning 2s linear infinite alternate;
+  border-top: 50px solid #bd2f04;
+  background-size: 100%;
+  transform-origin: top;
+}
+
+@keyframes turning {
+  0% {
+    transform: rotate(-90deg);
+  }
+
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+.previous-weather {
+  position: absolute;
+  bottom: 0;
+  min-width: 100vw;
+  background: white;
+  height: max-content;
+  h1 {
+    color: rgb(230, 94, 16);
+    margin-left: 10px;
+    font-weight: 500;
+  }
+}
+.show-previous-weather {
+  margin-bottom: 20px;
+  display: none;
+  animation: toggle 1s;
+  animation-iteration-count: 1;
+}
+
+@keyframes toggle {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.weather-cards {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  min-width: 200px;
+  h1 {
+    font-size: 25px;
+    color: black;
+    margin: 0;
+  }
+  h3 {
+    font-size: 18px;
+    color: gray;
+    margin: 0;
+    font-weight: 400;
+  }
+  h4 {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.85);
+    margin: 0;
+    font-weight: 400;
+  }
+
+  button {
+    border: none;
+    color: white;
+    background-color: rgb(216, 71, 27);
+    padding: 0.5rem;
+    border-radius: 10px;
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+}
+
+.weather-toggle {
+  position: absolute;
+  top: -50px;
+  height: 0;
+  width: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 50px solid rgba(0, 0, 0, 0.7);
+
+  &:hover {
+    border-bottom: 50px solid rgb(187, 3, 3);
+  }
+}
+.show-mars-info {
+  display: none;
+  background-color: black;
+  background-image: linear-gradient(to left, red, orange);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  width: 55rem;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 30px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  position: absolute;
+  bottom: 0;
+  animation: martian 550ms linear forwards infinite;
+  text-rendering: geometricPrecision;
+  font-weight: 700;
+}
+
+.active {
+  display: block;
+}
+
+@keyframes martian {
+  from {
+    opacity: 0.9;
+  }
+  to {
+    opacity: 1;
+  }
+}
