@@ -1,3 +1,3 @@
 # mars-weather-app
 
-#wonderful-euclid.netlify.app
+# wonderful-euclid.netlify.app
